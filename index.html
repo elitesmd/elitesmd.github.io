@@ -1,0 +1,1422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Screen Rentals | Premium SMD Screen Solutions in Karachi</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
+    <style>
+        :root {
+            --primary: #ff6b00;
+            --secondary: #00a8ff;
+            --dark: #0f0f0f;
+            --darker: #080808;
+            --light: #f8f9fa;
+            --gray: #1e1e1e;
+            --navbar-bg: rgba(15, 15, 15, 0.92);
+            --navbar-border: rgba(255, 107, 0, 0.2);
+            --card-bg: #1a1a1a;
+            --text-light: rgba(255, 255, 255, 0.9);
+            --text-muted: rgba(255, 255, 255, 0.6);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: var(--dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        
+        /* ================ Premium Navbar ================ */
+        header {
+            background: var(--navbar-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            padding: 1.2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid var(--navbar-border);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+        }
+        
+        header.scrolled {
+            padding: 0.8rem 5%;
+            background: rgba(10, 10, 10, 0.98);
+            border-bottom-color: rgba(255, 107, 0, 0.1);
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            letter-spacing: 0.5px;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+            font-weight: 600;
+        }
+        
+        .logo i {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        nav ul li {
+            position: relative;
+        }
+        
+        nav ul li a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            padding: 0.5rem 0;
+            position: relative;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Animated Gradient Underline Effect */
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            bottom: 0;
+            left: 0;
+            transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            border-radius: 2px;
+        }
+        
+        nav ul li a:hover::after,
+        nav ul li a.active::after {
+            width: 100%;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary);
+            text-shadow: 0 0 10px rgba(255, 107, 0, 0.3);
+        }
+        
+        nav ul li a.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: white;
+            z-index: 1001;
+            transition: transform 0.3s ease;
+        }
+        
+        .menu-btn:hover {
+            color: var(--primary);
+        }
+        
+        .menu-btn.active {
+            transform: rotate(90deg);
+        }
+        
+        /* ================ Video Hero Section ================ */
+        .hero {
+            height: 100vh;
+            min-height: 800px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            opacity: 0.7;
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+            transform: translateY(30px);
+            opacity: 0;
+            animation: fadeInUp 1s 0.3s forwards;
+        }
+        
+        .hero h1 {
+            font-size: 3.8rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            box-shadow: 0 5px 20px rgba(255, 107, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            border-radius: 50px;
+        }
+        
+        .btn:hover::before {
+            opacity: 1;
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 107, 0, 0.5);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            margin-left: 1rem;
+            box-shadow: none;
+        }
+        
+        .btn-outline:hover {
+            color: white;
+            border-color: transparent;
+        }
+        
+        .btn-outline::before {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+        
+        /* ================ Stats Counter ================ */
+        .stats {
+            padding: 5rem 5%;
+            background-color: var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stats::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            opacity: 0.9;
+            z-index: 1;
+        }
+        
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .stat-item {
+            text-align: center;
+            color: white;
+        }
+        
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            transition: all 0.5s ease;
+        }
+        
+        .stat-label {
+            font-size: 1.2rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* ================ Services Section ================ */
+        .services {
+            padding: 8rem 5%;
+            background-color: var(--darker);
+            position: relative;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 0.5px;
+        }
+        
+        .section-title p {
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+        
+        .services-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
+        }
+        
+        .service-card {
+            background-color: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 15px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            z-index: 2;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 107, 0, 0.2);
+        }
+        
+        .service-icon {
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            transition: transform 0.3s ease;
+        }
+        
+        .service-card:hover .service-icon {
+            transform: scale(1.1);
+            color: var(--secondary);
+        }
+        
+        .service-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1.2rem;
+            color: var(--text-light);
+        }
+        
+        .service-card p {
+            color: var(--text-muted);
+            margin-bottom: 1.8rem;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+        
+        .price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin: 1.5rem 0;
+            display: block;
+        }
+        
+        .price span {
+            font-size: 1rem;
+            color: var(--text-muted);
+            font-weight: normal;
+        }
+        
+        /* ================ Testimonials Section ================ */
+        .testimonials {
+            padding: 8rem 5%;
+            background-color: var(--dark);
+            position: relative;
+        }
+        
+        .swiper {
+            width: 100%;
+            height: 100%;
+            margin-top: 4rem;
+        }
+        
+        .swiper-slide {
+            background-color: var(--card-bg);
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-content {
+            margin-bottom: 1.5rem;
+            font-style: italic;
+            color: var(--text-muted);
+            line-height: 1.8;
+            position: relative;
+        }
+        
+        .testimonial-content::before,
+        .testimonial-content::after {
+            content: '"';
+            font-size: 3rem;
+            color: var(--primary);
+            opacity: 0.3;
+            position: absolute;
+        }
+        
+        .testimonial-content::before {
+            top: -20px;
+            left: -15px;
+        }
+        
+        .testimonial-content::after {
+            bottom: -40px;
+            right: -15px;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary);
+        }
+        
+        .author-info h4 {
+            color: var(--text-light);
+            margin-bottom: 0.3rem;
+        }
+        
+        .author-info p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        
+        .swiper-pagination-bullet {
+            background: var(--text-muted);
+            opacity: 0.5;
+            width: 12px;
+            height: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .swiper-pagination-bullet-active {
+            background: var(--primary);
+            opacity: 1;
+            transform: scale(1.2);
+        }
+        
+        /* ================ Gallery Section ================ */
+        .gallery {
+            padding: 8rem 5%;
+            background-color: var(--dark);
+            position: relative;
+        }
+        
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.8rem;
+            margin-top: 4rem;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            height: 280px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s ease;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+            padding: 2rem;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+        
+        .gallery-overlay h3 {
+            color: white;
+            font-size: 1.3rem;
+            margin-bottom: 0.3rem;
+        }
+        
+        .gallery-overlay p {
+            color: #ddd;
+            font-size: 0.9rem;
+        }
+        
+        .gallery-overlay .btn {
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            align-self: flex-start;
+        }
+        
+        /* ================ Contact Section ================ */
+        .contact {
+            padding: 8rem 5%;
+            background-color: var(--darker);
+            position: relative;
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 4rem;
+            margin-top: 4rem;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .contact-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .contact-card:hover {
+            transform: translateX(10px);
+        }
+        
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            color: white;
+            flex-shrink: 0;
+            box-shadow: 0 5px 15px rgba(255, 107, 0, 0.3);
+        }
+        
+        .contact-text h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+        }
+        
+        .contact-text p, .contact-text a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: 0.3s;
+            line-height: 1.6;
+        }
+        
+        .contact-text a:hover {
+            color: var(--primary);
+        }
+        
+        .contact-form {
+            background-color: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .contact-form h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.8rem;
+            color: var(--text-light);
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .form-group {
+            margin-bottom: 1.8rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            border-radius: 10px;
+            border: none;
+            background-color: rgba(255, 255, 255, 0.05);
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            background-color: rgba(255, 107, 0, 0.05);
+            box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.1);
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+        
+        .whatsapp-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            background-color: #25D366;
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            transition: all 0.3s ease;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+        }
+        
+        .whatsapp-btn:hover {
+            background-color: #128C7E;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+        }
+        
+        /* ================ Footer ================ */
+        footer {
+            background-color: var(--darker);
+            padding: 3rem 5%;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .social-links a {
+            width: 50px;
+            height: 50px;
+            background-color: var(--gray);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .social-links a:hover {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 107, 0, 0.3);
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        
+        .copyright {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 1.5rem;
+        }
+        
+        /* ================ Animations ================ */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .btn.pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        /* ================ Responsive Design ================ */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3.2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.5rem;
+            }
+            
+            .model-wrapper {
+                height: 400px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .menu-btn {
+                display: block;
+            }
+            
+            nav {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 80%;
+                max-width: 350px;
+                height: 100vh;
+                background-color: var(--darker);
+                transition: 0.4s ease;
+                z-index: 1000;
+                padding: 100px 2rem 2rem;
+                box-shadow: 5px 0 30px rgba(0, 0, 0, 0.3);
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+            }
+            
+            nav.active {
+                left: 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            
+            nav ul li a {
+                font-size: 1.2rem;
+                padding: 0.8rem 0;
+                display: block;
+            }
+            
+            .hero {
+                min-height: 700px;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .btn-container {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .btn-outline {
+                margin-left: 0;
+            }
+            
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .model-wrapper {
+                height: 350px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .service-card, .contact-form {
+                padding: 2rem 1.5rem;
+            }
+            
+            .stats-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .stat-number {
+                font-size: 3rem;
+            }
+            
+            .swiper-slide {
+                padding: 2rem 1.5rem;
+            }
+            
+            .model-wrapper {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="navbar">
+        <a href="#home" class="logo">
+            <i class="fas fa-tv"></i>Elite<span>Screen</span>
+        </a>
+        <div class="menu-btn">
+            <i class="fas fa-bars"></i>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#stats" class="nav-link">Stats</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
+                <li><a href="#gallery" class="nav-link">Gallery</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section with Video Background -->
+    <section class="hero" id="home">
+        <video autoplay muted loop class="video-background">
+            <source src="video/SMD.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Premium SMD Screen Rentals in Karachi</h1>
+            <p>High-quality P4 LED screens and professional sound systems for concerts, weddings, corporate events and more. Book now for unforgettable visual experiences!</p>
+            <div class="btn-container">
+                <a href="#contact" class="btn pulse">Book Now</a>
+                <a href="#services" class="btn btn-outline">Our Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Counter Section -->
+    <section class="stats" id="stats">
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-number" data-count="150">0</div>
+                <div class="stat-label">Events Completed</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-count="130">0</div>
+                <div class="stat-label">Satisfied Clients</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="section-title">
+            <h2>Our Services</h2>
+            <p>We provide top-notch event equipment rentals with professional setup and support</p>
+        </div>
+        <div class="services-container">
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-tv"></i>
+                </div>
+                <h3>P4 SMD Screen Rental</h3>
+                <p>High-resolution P4 LED screens perfect for outdoor and indoor events with vibrant colors and excellent visibility.</p>
+                <a href="#contact" class="btn">Inquire Now</a>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-volume-up"></i>
+                </div>
+                <h3>Professional Sound System</h3>
+                <p>Complete sound setup with high-power speakers, mixers, microphones and expert technicians.</p>               
+                <a href="#contact" class="btn">Inquire Now</a>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-star"></i>
+                </div>
+                <h3>Complete Package</h3>
+                <p>Get both SMD screen and sound system with full setup and technical support at discounted rates.</p>
+                <a href="#contact" class="btn">Get Package</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="section-title">
+            <h2>Client Testimonials</h2>
+            <p>What our clients say about our services</p>
+        </div>
+        
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="testimonial-content">
+                        Elite Screen Rentals provided exceptional service for our corporate event. The P4 screen was crystal clear and their team was professional throughout. Highly recommended!
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client" class="author-avatar">
+                        <div class="author-info">
+                            <h4>Ahmed Khan</h4>
+                            <p>CEO, Tech Solutions</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="testimonial-content">
+                        We used their services for our wedding reception and the screen quality was outstanding! The sound system was powerful yet clear. They handled everything from setup to teardown.
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Client" class="author-avatar">
+                        <div class="author-info">
+                            <h4>Fatima Ali</h4>
+                            <p>Wedding Client</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="testimonial-content">
+                        As event organizers, we've worked with many vendors but Elite Screen stands out for their reliability and quality. Their P4 screens are always bright and vibrant, even in daylight.
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Client" class="author-avatar">
+                        <div class="author-info">
+                            <h4>Bilal Ahmed</h4>
+                            <p>Event Manager</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
+
+
+    <!-- Gallery Section -->
+    <section class="gallery" id="gallery">
+        <div class="section-title">
+            <h2>Our Work</h2>
+            <p>See our screens in action at various events across Karachi</p>
+        </div>
+        <div class="gallery-container">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Concert Event">
+                <div class="gallery-overlay">
+                    <h3>Music Concert</h3>
+                    <p>Clifton, Karachi</p>
+                    <a href="#contact" class="btn">Book Similar Setup</a>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Wedding Event">
+                <div class="gallery-overlay">
+                    <h3>Wedding Reception</h3>
+                    <p>Marriott, Karachi</p>
+                    <a href="#contact" class="btn">Book Similar Setup</a>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1431540015161-0bf868a2d407?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Corporate Event">
+                <div class="gallery-overlay">
+                    <h3>Corporate Conference</h3>
+                    <p>Avari Towers</p>
+                    <a href="#contact" class="btn">Book Similar Setup</a>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Exhibition">
+                <div class="gallery-overlay">
+                    <h3>Product Exhibition</h3>
+                    <p>Expo Center</p>
+                    <a href="#contact" class="btn">Book Similar Setup</a>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1496337589254-7e19d01cec44?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Religious Event">
+                <div class="gallery-overlay">
+                    <h3>Religious Gathering</h3>
+                    <p>Nishtar Park</p>
+                    <a href="#contact" class="btn">Book Similar Setup</a>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Outdoor Event">
+                <div class="gallery-overlay">
+                    <h3>Outdoor Festival</h3>
+                    <p>Seaview</p>
+                    <a href="#contact" class="btn">Book Similar Setup</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="section-title">
+            <h2>Contact Us</h2>
+            <p>Get in touch to book our services or ask any questions</p>
+        </div>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h3>Location</h3>
+                        <p>Malir, Karachi</p>
+                    </div>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h3>Call Us</h3>
+                        <a href="tel:+92 346 2687057">+92 346 2687057</a>
+                    </div>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h3>Email Us</h3>
+                        <a href="mailto:info@elitescreen.com">info@elitescreen.com</a>
+                    </div>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h3>Working Hours</h3>
+                        <p>24/7 for emergencies</p>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form">
+                <div class="contact-form">
+                    <h3>Send Us a Message</h3>
+                    <form id="bookingForm">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" placeholder="Enter your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" placeholder="Enter your phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="event">Event Type</label>
+                            <input type="text" id="event" placeholder="Wedding, concert, etc.">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Your Message</label>
+                            <textarea id="message" placeholder="Tell us about your event needs"></textarea>
+                        </div>
+                        <button type="button" class="btn" onclick="sendToWhatsApp()">Send Message</button>
+                    </form>
+                </div>
+                
+                <script>
+                function sendToWhatsApp() {
+                    // Get form values
+                    const name = document.getElementById('name').value;
+                    const phone = document.getElementById('phone').value;
+                    const eventType = document.getElementById('event').value || 'Not specified';
+                    const message = document.getElementById('message').value || 'No additional message';
+                    
+                    // Create WhatsApp message
+                    const whatsappMessage = `New Booking Inquiry:%0A%0A` +
+                                           `*Name:* ${name}%0A` +
+                                           `*Phone:* ${phone}%0A` +
+                                           `*Event Type:* ${eventType}%0A` +
+                                           `*Message:* ${message}`;
+                    
+                    // Redirect to WhatsApp
+                    window.open(`https://wa.me/923462687057?text=${whatsappMessage}`, '_blank');
+                    
+                    // Optional: Reset form after submission
+                    document.getElementById('bookingForm').reset();
+                }
+                </script>
+                    <a href="https://wa.me/923462687057" class="whatsapp-btn">
+                        <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+                    </a>
+                </form>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#stats">Stats</a>
+                <a href="#services">Services</a>
+                <a href="#testimonials">Testimonials</a>
+                <a href="#gallery">Gallery</a>
+                <a href="#contact">Contact</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+            <p class="copyright">&copy; 2025 EliteScreen Rentals. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        // Enhanced JavaScript with All Features
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Toggle
+            const menuBtn = document.querySelector('.menu-btn');
+            const nav = document.querySelector('nav');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const navbar = document.getElementById('navbar');
+            const sections = document.querySelectorAll('section');
+            
+            menuBtn.addEventListener('click', () => {
+                nav.classList.toggle('active');
+                menuBtn.classList.toggle('active');
+                document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : 'auto';
+            });
+            
+            // Navbar Scroll Effect
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+                
+                // Active section highlighting
+                const scrollPosition = window.scrollY + 100;
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.offsetHeight;
+                    const sectionId = section.getAttribute('id');
+                    
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${sectionId}`) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            });
+            
+            // Smooth Scrolling for Anchor Links
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    
+                    // Close mobile menu if open
+                    nav.classList.remove('active');
+                    menuBtn.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                    menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    
+                    // Smooth scroll to section
+                    window.scrollTo({
+                        top: targetSection.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Update active link
+                    navLinks.forEach(navLink => navLink.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // Initialize Testimonial Swiper
+            const swiper = new Swiper(".mySwiper", {
+                effect: "coverflow",
+                grabCursor: true,
+                centeredSlides: true,
+                slidesPerView: "auto",
+                coverflowEffect: {
+                    rotate: 0,
+                    stretch: 0,
+                    depth: 100,
+                    modifier: 2,
+                    slideShadows: true,
+                },
+                loop: true,
+                autoplay: {
+                    delay: 3000,
+                    disableOnInteraction: false,
+                },
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                },
+            });
+            
+            // Animated Counter
+            const statNumbers = document.querySelectorAll('.stat-number');
+            const speed = 200;
+            
+            function animateCounters() {
+                statNumbers.forEach(statNumber => {
+                    const target = +statNumber.getAttribute('data-count');
+                    const count = +statNumber.innerText;
+                    const increment = target / speed;
+                    
+                    if (count < target) {
+                        statNumber.innerText = Math.ceil(count + increment);
+                        setTimeout(animateCounters, 1);
+                    } else {
+                        statNumber.innerText = target;
+                    }
+                });
+            }
+            
+            // Initialize counters when stats section is in view
+            const statsSection = document.querySelector('.stats');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounters();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            observer.observe(statsSection);
+            
+            // 3D Model Placeholder (would be replaced with actual Three.js code)
+            // For a real implementation, you would need to:
+            // 1. Create or obtain a 3D model of your SMD screen
+            // 2. Use Three.js to render it in the model-wrapper div
+            // 3. Implement the rotation/fullscreen functionality
+            
+            // Form Submission
+            const bookingForm = document.getElementById('bookingForm');
+            bookingForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form values
+                const name = document.getElementById('name').value;
+                const phone = document.getElementById('phone').value;
+                const eventType = document.getElementById('event').value;
+                const message = document.getElementById('message').value;
+                
+                // Here you would normally send this data to a server
+                // For demo, we'll show a nice alert
+                alert(`Thank you ${name}! We've received your booking request for ${eventType || 'your event'}. We'll contact you shortly at ${phone}.`);
+                
+                // Reset form
+                bookingForm.reset();
+            });
+            
+            // Initialize animations
+            reveal();
+            
+            function reveal() {
+                const reveals = document.querySelectorAll('.service-card, .gallery-item, .contact-card, .hero-content, .stat-item, .swiper-slide, .model-wrapper');
+                
+                reveals.forEach(item => {
+                    const windowHeight = window.innerHeight;
+                    const revealTop = item.getBoundingClientRect().top;
+                    const revealPoint = 150;
+                    
+                    if (revealTop < windowHeight - revealPoint) {
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateY(0)';
+                    }
+                });
+            }
+            
+            // Add scroll event listener for reveal animations
+            window.addEventListener('scroll', reveal);
+        });
+    </script>
+</body>
+</html>
